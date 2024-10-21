@@ -9,6 +9,7 @@ crate-type = [ 'staticlib' ]
 name = 'rsqlx'
 
 [dependencies]
-extendr-api = '*'
+extendr-api = {version = "0.7.1", features = ["result_list"]}
 sqlx = { version = "0.8", features = ["runtime-tokio-native-tls", "postgres", "sqlite", "mysql"] }
 tokio = { version = "1.4", features = ["full"] }
+futures = "0.3"

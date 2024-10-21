@@ -14,5 +14,33 @@ r_read_table <- function(conn_str, table) .Call(wrap__r_read_table, conn_str, ta
 
 hello_world <- function() .Call(wrap__hello_world)
 
+RSQLXConnection <- new.env(parent = emptyenv())
+
+RSQLXConnection$new <- function(conn_str) .Call(wrap__RSQLXConnection__new, conn_str)
+
+RSQLXConnection$fetch_qeury <- function(query) .Call(wrap__RSQLXConnection__fetch_qeury, self, query)
+
+RSQLXConnection$fetch_qeury_background <- function(query) .Call(wrap__RSQLXConnection__fetch_qeury_background, self, query)
+
+RSQLXConnection$drop <- function() invisible(.Call(wrap__RSQLXConnection__drop, self))
+
+#' @export
+`$.RSQLXConnection` <- function (self, name) { func <- RSQLXConnection[[name]]; environment(func) <- environment(); func }
+
+#' @export
+`[[.RSQLXConnection` <- `$.RSQLXConnection`
+
+RSQLXFuture <- new.env(parent = emptyenv())
+
+RSQLXFuture$join <- function() .Call(wrap__RSQLXFuture__join, self)
+
+RSQLXFuture$is_done <- function() .Call(wrap__RSQLXFuture__is_done, self)
+
+#' @export
+`$.RSQLXFuture` <- function (self, name) { func <- RSQLXFuture[[name]]; environment(func) <- environment(); func }
+
+#' @export
+`[[.RSQLXFuture` <- `$.RSQLXFuture`
+
 
 # nolint end

@@ -25,3 +25,13 @@ say_hello_world = function() {
 read_table = function(conn_str, name) {
   rsqlx:::r_read_table(conn_str, name)
 }
+
+
+
+unwrap = function(result) {
+  if (inherits(result,"extendr_result") && is.null(result$err)) {
+    result$ok
+  } else {
+    stop(result$err)
+  }
+}
